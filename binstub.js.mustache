@@ -24,7 +24,7 @@ function execBin() {
   spawn(
     binPath,
     process.argv.slice(2),
-    {stdio: 'inherit'}
+    {stdio: 'inherit', shell: true}
   ).on('exit', process.exit);
 }
 
