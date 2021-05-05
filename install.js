@@ -17,14 +17,14 @@ module.exports = function install(config, unpackedBinPath, os, arch) {
   if (!url) {
     throw new Error("No binaries are available for your platform: " + buildId);
   }
-  var sub = fs.readdirSync(unpackedBinPath);
-  if (sub.length === 1) {
-    var stats = fs.statSync(path.join(unpackedBinPath, sub[0]));
-    if (stats.isDirectory()) {
-      unpackedBinPath = path.join(unpackedBinPath, sub[0]);
-    }
-  }
   return binstall(url, unpackedBinPath).then(function() {
+    var sub = fs.readdirSync(unpackedBinPath);
+    if (sub.length === 1) {
+      var stats = fs.statSync(path.join(unpackedBinPath, sub[0]));
+      if (stats.isDirectory()) {
+        unpackedBinPath = path.join(unpackedBinPath, sub[0]);
+      }
+    }
     config.binaries.forEach(function(bin) {
       fs.chmodSync(path.join(unpackedBinPath, bin + binExt), "755");
     });
