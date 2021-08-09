@@ -18,6 +18,13 @@ if (os == "win32") {
 }
 
 var unpackedBinPath = path.join(__dirname, "..", "unpacked_bin");
+var sub = fs.readdirSync(unpackedBinPath);
+if (sub.length === 1) {
+  var stats = fs.statSync(path.join(unpackedBinPath, sub[0]));
+  if (stats.isDirectory()) {
+    unpackedBinPath = path.join(unpackedBinPath, sub[0]);
+  }
+}
 var binPath = path.join(unpackedBinPath, "{{ binName }}" + binExt);
 
 function execBin() {
