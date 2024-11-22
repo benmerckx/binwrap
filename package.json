@@ -1,5 +1,5 @@
 {
-  "name": "binwrap",
+  "name": "@benmerckx/binwrap",
   "version": "0.2.2",
   "description": "Package cross-platform binaries",
   "main": "index.js",
